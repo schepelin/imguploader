@@ -6,36 +6,37 @@ package mocks
 
 import (
 	context "context"
+	reflect "reflect"
+
 	gomock "github.com/golang/mock/gomock"
 	uploader "github.com/schepelin/imgupload/pkg/uploader"
-	reflect "reflect"
 )
 
-// MockImageUploadService is a mock of ImageUploadService interface
-type MockImageUploadService struct {
+// MockUploadService is a mock of UploadService interface
+type MockUploadService struct {
 	ctrl     *gomock.Controller
-	recorder *MockImageUploadServiceMockRecorder
+	recorder *MockUploadServiceMockRecorder
 }
 
-// MockImageUploadServiceMockRecorder is the mock recorder for MockImageUploadService
-type MockImageUploadServiceMockRecorder struct {
-	mock *MockImageUploadService
+// MockUploadServiceMockRecorder is the mock recorder for MockUploadService
+type MockUploadServiceMockRecorder struct {
+	mock *MockUploadService
 }
 
-// NewMockImageUploadService creates a new mock instance
-func NewMockImageUploadService(ctrl *gomock.Controller) *MockImageUploadService {
-	mock := &MockImageUploadService{ctrl: ctrl}
-	mock.recorder = &MockImageUploadServiceMockRecorder{mock}
+// NewMockUploadService creates a new mock instance
+func NewMockUploadService(ctrl *gomock.Controller) *MockUploadService {
+	mock := &MockUploadService{ctrl: ctrl}
+	mock.recorder = &MockUploadServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use
-func (m *MockImageUploadService) EXPECT() *MockImageUploadServiceMockRecorder {
+func (m *MockUploadService) EXPECT() *MockUploadServiceMockRecorder {
 	return m.recorder
 }
 
 // UploadImage mocks base method
-func (m *MockImageUploadService) UploadImage(ctx context.Context, raw []byte) (string, error) {
+func (m *MockUploadService) UploadImage(ctx context.Context, raw []byte) (string, error) {
 	ret := m.ctrl.Call(m, "UploadImage", ctx, raw)
 	ret0, _ := ret[0].(string)
 	ret1, _ := ret[1].(error)
@@ -43,12 +44,12 @@ func (m *MockImageUploadService) UploadImage(ctx context.Context, raw []byte) (s
 }
 
 // UploadImage indicates an expected call of UploadImage
-func (mr *MockImageUploadServiceMockRecorder) UploadImage(ctx, raw interface{}) *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UploadImage", reflect.TypeOf((*MockImageUploadService)(nil).UploadImage), ctx, raw)
+func (mr *MockUploadServiceMockRecorder) UploadImage(ctx, raw interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UploadImage", reflect.TypeOf((*MockUploadService)(nil).UploadImage), ctx, raw)
 }
 
 // GetImage mocks base method
-func (m *MockImageUploadService) GetImage(ctx context.Context, imgID string) (*uploader.Image, error) {
+func (m *MockUploadService) GetImage(ctx context.Context, imgID string) (*uploader.Image, error) {
 	ret := m.ctrl.Call(m, "GetImage", ctx, imgID)
 	ret0, _ := ret[0].(*uploader.Image)
 	ret1, _ := ret[1].(error)
@@ -56,8 +57,8 @@ func (m *MockImageUploadService) GetImage(ctx context.Context, imgID string) (*u
 }
 
 // GetImage indicates an expected call of GetImage
-func (mr *MockImageUploadServiceMockRecorder) GetImage(ctx, imgID interface{}) *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetImage", reflect.TypeOf((*MockImageUploadService)(nil).GetImage), ctx, imgID)
+func (mr *MockUploadServiceMockRecorder) GetImage(ctx, imgID interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetImage", reflect.TypeOf((*MockUploadService)(nil).GetImage), ctx, imgID)
 }
 
 // MockHasher is a mock of Hasher interface

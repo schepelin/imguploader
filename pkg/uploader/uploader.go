@@ -2,9 +2,14 @@ package uploader
 
 import (
 	"context"
+	"errors"
 )
 
 //go:generate mockgen -source=uploader.go -destination ../mocks/mock_uploader.go -package mocks
+
+var (
+	ErrImgExists = errors.New("image already exists")
+)
 
 // Image entity
 type Image struct {
@@ -13,8 +18,8 @@ type Image struct {
 	Link    string
 }
 
-// ImageUploadService represents use cases with Image entity
-type ImageUploadService interface {
+// UploadService represents use cases with Image entity
+type UploadService interface {
 	UploadImage(ctx context.Context, raw []byte) (link string, err error)
 	GetImage(ctx context.Context, imgID string) (*Image, error)
 }
