@@ -4,6 +4,8 @@ import (
 	"context"
 )
 
+//go:generate mockgen -source=uploader.go -destination ../mocks/mock_uploader.go -package mocks
+
 // Image entity
 type Image struct {
 	ID      string
